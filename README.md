@@ -22,3 +22,18 @@ Requires knowledge of tmux keyboard commands.
 Find the name of disk images in the nodes file and update the array to your liking.
 
 To run locally, the script can be updated to find the project files on the PC or GNS VM rather than using SSH to find/pull them from the remote server.  File paths will need to be updated for this to happen.
+
+
+To update which VMs go on which panes in tmux, update the following code:
+
+my %device_windows = (
+    'routers'  => [
+      "vios-adventerprisek9-m.spa.159-3.m6.qcow2" ,
+      "i86bi-linux-l3-adventerprisek9-ms.155-2.T.bin"
+    ],
+    'switches' => [
+      "vios_l2-adventerprisek9-m.ssa.high_iron_20200929.qcow2",
+      "i86bi-linux-l2-ipbasek9-15.1g.bin"
+    ],
+    'pcs'      => [ "desktop-3-16-2-xfce.qcow2", "tcl-13-1.qcow2" ],
+);
