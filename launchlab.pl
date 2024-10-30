@@ -45,8 +45,6 @@ my %device_windows = (
     'pcs'      => [ "desktop-3-16-2-xfce.qcow2", "tcl-13-1.qcow2" ],
 );
 
-
-
 # Step 1: Read the JSON file
 open my $fh, '<', $file_path or die "Cannot open file: $file_path\n";
 my $json_text = do { local $/; <$fh> };
@@ -60,16 +58,6 @@ my %categorized_devices;
 foreach my $node (@{ $data->{topology}->{nodes} }) {
     # Find the first occurrence of `hda_disk_image`
     my $disk_image;
-    #PROPERTY_LOOP:
-    #foreach my $key (keys %{ $node->{properties} }) {
-		#    if ($key eq 'hda_disk_image') {
-		#        $disk_image = $node->{properties}->{$key};
-		#        last PROPERTY_LOOP;  # Exit the loop after the first occurrence
-		#    }
-		#    #if ($key eq 'hda_disk_image' && !defined $disk_image) {
-		#    #  $disk_image = $node->{properties}->{$key};
-		#    #}
-    #}
 
    # Loop over properties to find the first `hda_disk_image` or `path`
     foreach my $key (keys %{ $node->{properties} }) {
@@ -80,13 +68,6 @@ foreach my $node (@{ $data->{topology}->{nodes} }) {
 
     my $console_port = $node->{console};
     my $name = $node->{name};
-
-    # Print device information for debugging
-    #print "Debug: Device Name = $name, Console Port = $console_port, Disk Image = $disk_image\n";
-# Debug print statement to verify if we capture disk_image correctly
-    print "Debug: Device Name = $name, Console Port = $console_port, Disk Image = ", 
-          (defined $disk_image ? $disk_image : 'None'), "\n";
-
 
     # Determine the device type based on `hda_disk_image`
     my $device_type;
