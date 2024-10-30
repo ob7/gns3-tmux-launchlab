@@ -1,34 +1,48 @@
-GNS3 Launch Lab is for the rapid deployment of lab environments.
+# GNS3 Launch Lab in TMUX
 
-It works by running one command followed by the name of the GNS3 project
+GNS3 Launch Lab enables rapid deployment of lab environments for GNS3. The script allows you to launch a GNS3 lab with a single command, organizing various device types into separate tmux windows and panes for efficient access.
 
+## Usage
+
+To start a GNS3 lab environment:
+
+```bash
 perl launchlab.pl ccna-capstone
+```
+# Overview
 
-This will then launch a tmux session consoled into all running VMs using telnet. Different device types are separated by tmux windows, and similar devices separated by panes within those windows.
+This command will:
+- Launch a `tmux` session consoled into all running VMs using `telnet`.
+- Organize different device types into separate `tmux` windows.
+- Group similar devices into panes within each window.
 
-VNC items will be also be launched via vncviewer.
+Any VNC-capable items will also be opened via `vncviewer`.
 
-The script decides how to classify VMs based on their disk image name.  So its important to update the array with what images you want organized where.
+The script decides how to classify VMs based on their disk image names, so it's essential to update the array to organize images according to your preferences.
 
-The script was built intended for systems running GNS3 on bare metal in an isolated environment ( hence the hard coded ssh credential ).
+The script is designed for systems running GNS3 on bare metal in an isolated environment (hence the hardcoded SSH credentials).
 
+## How It Works
 
-The scipt works by shelling into the remote GNS3 server, finding the project file, and extracting the console port numbers for each of the nodes.  It then loops over those nodes, classifies them, and decides whether to add to the tmux session or launch with vnc.
+1. The script connects to the remote GNS3 server via SSH.
+2. It locates the project file and extracts the console port numbers for each node.
+3. It then loops over each node, classifies them, and decides whether to add them to the tmux session (via telnet) or launch with `vncviewer`.
 
-Make sure to start all nodes before running the script.  Nodes started after running the script must be connected to manually.
+**Note**: Start all nodes before running the script. Nodes started after running the script must be connected to manually.
 
-Requires knowledge of tmux keyboard commands.
+## Requirements
 
-Find the name of disk images in the nodes file and update the array to your liking.
+- Knowledge of `tmux` keyboard commands.
+- Familiarity with disk image names in the nodes file to customize the array.
 
-To run locally, the script can be updated to find the project files on the PC or GNS VM rather than using SSH to find/pull them from the remote server.  File paths will need to be updated for this to happen.
+## Customizing Device Organization
 
+To update which VMs appear in each `tmux` pane, modify the following code:
 
-To update which VMs go on which panes in tmux, update the following code:
-
+```perl
 my %device_windows = (
     'routers'  => [
-      "vios-adventerprisek9-m.spa.159-3.m6.qcow2" ,
+      "vios-adventerprisek9-m.spa.159-3.m6.qcow2",
       "i86bi-linux-l3-adventerprisek9-ms.155-2.T.bin"
     ],
     'switches' => [
@@ -37,3 +51,8 @@ my %device_windows = (
     ],
     'pcs'      => [ "desktop-3-16-2-xfce.qcow2", "tcl-13-1.qcow2" ],
 );
+```
+# Running Locally
+
+To run locally instead of connecting to a remote GNS3 server, update the script to find project files on your PC or GNS VM directly. Adjust the file paths as necessary.
+
