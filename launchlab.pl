@@ -40,9 +40,14 @@ my %device_windows = (
     ],
     'switches' => [ 
       "vios_l2-adventerprisek9-m.ssa.high_iron_20200929.qcow2",
-      "i86bi-linux-l2-ipbasek9-15.1g.bin"
+      "i86bi-linux-l2-ipbasek9-15.1g.bin",
+      "nexus9300v64.10.3.1.F.qcow2"
     ],
-    'pcs'      => [ "desktop-3-16-2-xfce.qcow2", "tcl-13-1.qcow2" ],
+    'pcs'      => [ 
+      "desktop-3-16-2-xfce.qcow2", 
+      "tcl-13-1.qcow2" ,
+      "nixos.qcow2"
+    ],
 );
 
 # Step 1: Read the JSON file
