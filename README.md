@@ -2,6 +2,8 @@
 
 GNS3 Launch Lab enables rapid deployment of lab environments for GNS3. The script allows you to launch a GNS3 lab with a single command, organizing various device types into separate tmux windows and panes for efficient access.
 
+![Example](assets/gns3_launch_lab_example.gif)
+
 ## Usage
 
 To start a GNS3 lab environment:
