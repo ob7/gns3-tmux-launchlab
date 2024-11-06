@@ -41,12 +41,19 @@ my %device_windows = (
     'switches' => [ 
       "vios_l2-adventerprisek9-m.ssa.high_iron_20200929.qcow2",
       "i86bi-linux-l2-ipbasek9-15.1g.bin",
+    ],
+    'l3switches' => [ 
+      "cat9kv-prd-17.10.01prd7.qcow2",
       "nexus9300v64.10.3.1.F.qcow2"
     ],
     'pcs'      => [ 
       "desktop-3-16-2-xfce.qcow2", 
       "tcl-13-1.qcow2" ,
-      "nixos.qcow2"
+      "nixos.qcow2",
+      "pc.qcow2"
+    ],
+    'servers'      => [ 
+      "dnsServer.qcow2"
     ],
 );
 
